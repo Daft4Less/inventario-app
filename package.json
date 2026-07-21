@@ -1,0 +1,13 @@
+{
+  "name": "inventario-app",
+  "version": "1.0.0",
+  "description": "Catalogo de inventario con interfaz web y base de datos local (JSON) - punto de partida para la tarea de CI/CD",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

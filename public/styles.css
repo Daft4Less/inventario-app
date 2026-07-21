@@ -1,0 +1,58 @@
+* { box-sizing: border-box; font-family: sans-serif; }
+body { margin: 0; background: #f2f2f2; color: #222; }
+
+#banner {
+  background: #1e2761;
+  color: white;
+  padding: 24px 32px;
+}
+#banner h1 { margin: 0 0 4px 0; }
+#banner p { margin: 0; opacity: 0.85; }
+
+main {
+  max-width: 800px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+
+#form-section, #table-section {
+  background: white;
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+#product-form {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+#product-form input {
+  flex: 1;
+  min-width: 100px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+#product-form button {
+  padding: 8px 16px;
+  background: #1e2761;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 8px; border-bottom: 1px solid #eee; }
+.delete-btn {
+  background: #b00020;
+  color: white;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+footer { text-align: center; color: #888; padding: 16px; font-size: 0.85em; }

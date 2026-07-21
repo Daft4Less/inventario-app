@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Catalogo de Inventario</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header id="banner">
+    <h1>Catalogo de Inventario</h1>
+    <p id="version-info">cargando version...</p>
+  </header>
+
+  <main>
+    <section id="form-section">
+      <h2>Agregar producto</h2>
+      <form id="product-form">
+        <input type="text" id="name" placeholder="Nombre del producto" required />
+        <input type="text" id="sku" placeholder="SKU (codigo)" required />
+        <input type="number" id="stock" placeholder="Stock" min="0" value="0" />
+        <input type="number" id="price" placeholder="Precio" min="0" step="0.01" value="0" />
+        <button type="submit">Agregar</button>
+      </form>
+    </section>
+
+    <section id="table-section">
+      <h2>Productos</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>SKU</th>
+            <th>Stock</th>
+            <th>Precio</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="product-rows"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <p>Servido desde: <span id="hostname-info">-</span></p>
+  </footer>
+
+  <script src="/app.js"></script>
+</body>
+</html>
