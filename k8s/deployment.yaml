@@ -14,22 +14,33 @@ spec:
   selector:
     matchLabels:
       app: inventario-app
+      tier: base
   template:
     metadata:
       labels:
         app: inventario-app
+        tier: base
     spec:
       containers:
         - name: inventario-app
           image: ghcr.io/daft4less/inventario-app:latest
           ports:
             - containerPort: 3000
+          env:
+            - name: STARTUP_DELAY_SECONDS
+              value: "15"
+            - name: API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: inventario-app-secret
+                  key: API_KEY
           readinessProbe:
             httpGet:
               path: /health
               port: 3000
-            initialDelaySeconds: 3
+            initialDelaySeconds: 5
             periodSeconds: 5
+            failureThreshold: 6
           livenessProbe:
             httpGet:
               path: /health
