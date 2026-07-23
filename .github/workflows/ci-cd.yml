@@ -38,11 +38,23 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Configurar Docker Buildx
         uses: docker/setup-buildx-action@v3
-      - name: Build y push de la imagen
+      - name: Build local de la imagen para escaneo
         uses: docker/build-push-action@v5
         with:
           context: .
-          push: true
-          tags: |
-            ${{ env.REGISTRY }}/${{ steps.image_name.outputs.name }}:${{ github.sha }}
-            ${{ env.REGISTRY }}/${{ steps.image_name.outputs.name }}:latest
+          push: false
+          load: true
+          tags: local-scan:${{ github.sha }}
+      - name: Escanear imagen con Trivy
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: local-scan:${{ github.sha }}
+          severity: CRITICAL
+          exit-code: '1'
+          ignore-unfixed: true
+      - name: Etiquetar y publicar imagen en ghcr.io
+        run: |
+          docker tag local-scan:${{ github.sha }} ${{ env.REGISTRY }}/${{ steps.image_name.outputs.name }}:${{ github.sha }}
+          docker tag local-scan:${{ github.sha }} ${{ env.REGISTRY }}/${{ steps.image_name.outputs.name }}:latest
+          docker push ${{ env.REGISTRY }}/${{ steps.image_name.outputs.name }}:${{ github.sha }}
+          docker push ${{ env.REGISTRY }}/${{ steps.image_name.outputs.name }}:latest
