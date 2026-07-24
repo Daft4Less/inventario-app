@@ -1,5 +1,5 @@
 ﻿# ---------- Etapa 1: build & test ----------
-FROM node:20-alpine AS build
+FROM node:20.19-alpine AS build
 WORKDIR /app
 
 # Copiamos solo los manifiestos primero (aprovecha cache de Docker)
@@ -13,7 +13,7 @@ COPY . .
 RUN npm test
 
 # ---------- Etapa 2: imagen final minima ----------
-FROM node:20-alpine AS runtime
+FROM node:20.19-alpine AS runtime
 WORKDIR /app
 ENV NODE_ENV=production
 
